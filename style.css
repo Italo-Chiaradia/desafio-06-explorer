@@ -1,0 +1,251 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  font-size: 62.5%;
+
+  --color-base-white: hsl(0, 0%, 100%);
+  --color-base-black-200: #121214;
+  --color-base-black-100: #202024;
+  --color-base-dark-blue: hsl(195, 91%, 25%);
+
+  
+}
+html, body, input {
+  font-family: 'Mulish', sans-serif;
+}
+body {
+  font-size: 1.6rem;
+  background-color: var(--color-base-white);
+  color: var(--color-base-black-200);
+}
+h1, h2, h3 {
+  font-weight: bold;
+  line-height: 160%;
+  color: var(--color-base-black-100);
+}
+
+/*APP container*/
+#app {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 7.2rem 1fr 6.4rem;
+  grid-template-areas: 
+  "header header header"
+  "main main main"
+  "footer footer footer";
+}
+header, footer {background-color: var(--color-base-dark-blue);}
+header {grid-area: header;}
+footer {grid-area: footer;}
+main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  width: min(122rem, 100%);
+  margin: 0 auto;
+}
+@media (min-width: 1220px) {
+  main {
+    flex-direction: row;
+    gap: 3.2rem;
+  }
+  main section {
+    flex: 2;
+  }
+  main aside {
+    flex: 1;
+  }
+}
+
+/*Header*/
+.header {
+  padding: 1.5rem 2.8rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+.header #logo {
+  width: 4rem;
+  height: 4rem;
+}
+.header #profile {
+  width: 4.2rem;
+  height: 4.2rem;
+}
+.header form {
+  flex: 1;
+}
+.input-wrapper label {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+}
+.input-wrapper input {
+  width: 100%;
+  padding: 1.2rem 1.4rem;
+  border: 0;
+  height: 4rem;
+  border-radius: .4rem;
+  background-color: rgba(255, 255, 255, .2);
+  
+  color: var(--color-base-white);
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+.input-wrapper input::placeholder {
+  font-size: 1.6rem;
+  opacity: .8;
+}
+
+/*Main*/
+main {
+  overflow: scroll;
+}
+
+/*Main section*/
+section {
+  position: relative;
+}
+#section-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.section-text{
+  padding: 3rem 2.4rem 3.4rem;
+}
+section h1 {
+  font-size: 2.4rem;
+}
+section p {
+  line-height: 160%;
+}
+section p + p {
+  margin-top: 1.6rem;
+}
+.title-buttons {
+  margin-bottom: 3.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+.buttons button:first-child {
+  margin-right: 1.2rem;
+}
+.buttons .btn {
+  padding: 1.2rem;
+  background-color: var(--color-base-dark-blue);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-grid;
+  transition: all .2s;
+}
+.buttons .btn:hover {
+  background-color: hsl(195, 90%, 15%);
+  transform: scale(1.1);
+}
+@media (min-width: 1220px) {
+  main {
+    padding-top: 4.4rem;
+    padding-inline: 2.8rem;
+  }
+  #section-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: .5rem;
+  }
+  .section-text{
+    margin-top: 3.1rem;
+    padding: 0;
+    padding-bottom: 4rem;
+  }
+  .title-buttons {
+    margin-bottom: 3.1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+/*Aside*/
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 0 2.4rem 3.9rem;
+  max-width: 50.0rem;
+}
+aside h2 {
+  font-size: 2.4rem;
+}
+aside article {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.article-img {
+  border-radius: .5rem;
+  height: 8.4rem;
+  object-fit: cover;
+}
+
+.article-text h3 {
+  font-size: 1.8rem;
+}
+.article-text p {
+  line-height: 160%;
+  font-size: 1.4rem;
+}
+@media (min-width: 1220px) {
+  aside {
+    padding: 0;
+  }
+}
+/*footer*/
+.footer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-base-white);
+  font-weight: 600;
+}
+
+/* Animation */
+
+header {
+  --startY: -100%;
+  animation: move .2s;
+}
+footer {
+  --startY: 100%;
+  animation: move .2s;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(var(--startY));
+  }
+}
+
+aside article {
+  --delay: .4s;
+  animation: appear .4s var(--delay) backwards;
+}
+@keyframes appear {
+    0% {
+      opacity: 0;
+      transform: scale(.7);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+}
